@@ -1,8 +1,7 @@
 fn main() {
     tracing_subscriber::fmt::init();
 
-    match serialport::available_ports() {
-        Ok(ports) => tracing::info!("{:?}", ports),
-        Err(err) => tracing::error!("{:?}", err),
+    for port in serialport::available_ports().expect("list ports") {
+        tracing::info!("{}: {:?}", port.port_name, port.port_type);
     }
 }

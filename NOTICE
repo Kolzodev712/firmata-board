@@ -1,0 +1,8 @@
+firmata-board
+Copyright (c) 2026 kolzoDev
+
+This project is derived from firmata-rs
+Copyright (c) 2023 Tiemen Schuijbroek
+https://gitlab.com/Tiemen/firmata-rs
+
+Licensed under either the MIT License or Apache License 2.0, at your option.

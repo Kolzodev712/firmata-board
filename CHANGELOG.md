@@ -1,26 +1,13 @@
 # Changelog
 
-Changelog following the template from https://keepachangelog.com.
-All versions before 1.X.X can contain major changes.
+## [0.1.0] - 2026-07-13
 
-## [0.4.3] - 2024-03-24
+Initial release of **firmata-board** — a multi-board Firmata host adapter.
 
-- Fixed a board startup error.
-- Set most reporting to debug by default.
+- Layered architecture: `protocol/`, `transport/`, `board/`, `pin/`
+- `ArduinoUno::open()` with typed `PinHandle` API (`d()`, `a()` helpers)
+- Firmata 2.5 protocol encode/decode with incremental decoder
+- Robust handshake, mock transport, golden-byte tests
+- Optional `serial` feature (default on) via `serialport`
 
-## [0.4.2] - 2024-03-24
-
-- Updated dependencies
-- Added a maximum retry interval of 5 seconds instead of a minute.
-
-## [0.4.1] - 2023-06-23
-
-### Fixed
-
-- Repository location and homepage now point to GitLab.
-
-## [0.4.0] - 2023-06-23
-
-### Changed
-
-- Complete overhaul. Added tracing, backoff and made sure all methods are infallible (won't panic).
+Derived from [firmata-rs](https://gitlab.com/Tiemen/firmata-rs) by Tiemen Schuijbroek.

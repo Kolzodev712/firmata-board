@@ -1,19 +1,51 @@
 [package]
-name = "firmata-rs"
-version = "0.4.3"
+name = "firmata-board"
+version = "0.1.0"
 license = "MIT OR Apache-2.0"
-authors = ["Tiemen Schuijbroek <t.j.l.schuijbroek@ratio-case.nl>"]
+authors = ["Nikola Kolev <nikolakolev712@gmail.com>"]
 readme = "README.md"
-repository = "https://gitlab.com/Tiemen/firmata-rs"
-homepage = "https://gitlab.com/Tiemen/firmata-rs"
-description = "A Firmata protocol client library."
+repository = "https://github.com/Darkeyes712/firmata-board"
+homepage = "https://github.com/Darkeyes712/firmata-board"
+description = "A multi-board Firmata host adapter for Arduino and compatible boards."
 edition = "2021"
+
+[features]
+default = ["serial"]
+serial = ["dep:serialport"]
 
 [dependencies]
 backoff = "0.4.0"
 snafu = "0.8.2"
 tracing = "0.1.40"
+serialport = { version = "4.3.0", optional = true }
 
 [dev-dependencies]
-serialport = "4.3.0"
 tracing-subscriber = "0.3.18"
+
+[[example]]
+name = "available"
+required-features = ["serial"]
+
+[[example]]
+name = "blink"
+required-features = ["serial"]
+
+[[example]]
+name = "analog"
+required-features = ["serial"]
+
+[[example]]
+name = "button"
+required-features = ["serial"]
+
+[[example]]
+name = "pwm"
+required-features = ["serial"]
+
+[[example]]
+name = "servo"
+required-features = ["serial"]
+
+[[example]]
+name = "blinkm_i2c"
+required-features = ["serial"]

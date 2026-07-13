@@ -1,0 +1,67 @@
+pub const PROTOCOL_MAJOR_VERSION: u8 = 2;
+pub const PROTOCOL_MINOR_VERSION: u8 = 5;
+pub const PROTOCOL_BUGFIX_VERSION: u8 = 1;
+
+pub const DIGITAL_MESSAGE: u8 = 0x90;
+pub const ANALOG_MESSAGE: u8 = 0xE0;
+pub const REPORT_ANALOG: u8 = 0xC0;
+pub const REPORT_DIGITAL: u8 = 0xD0;
+pub const DIGITAL_MESSAGE_BOUND: u8 = 0x9F;
+pub const ANALOG_MESSAGE_BOUND: u8 = 0xEF;
+pub const SET_PIN_MODE: u8 = 0xF4;
+pub const SET_DIGITAL_PIN_VALUE: u8 = 0xF5;
+pub const REPORT_VERSION: u8 = 0xF9;
+pub const SYSTEM_RESET: u8 = 0xFF;
+pub const START_SYSEX: u8 = 0xF0;
+pub const END_SYSEX: u8 = 0xF7;
+
+pub const SERIAL_DATA: u8 = 0x60;
+pub const ENCODER_DATA: u8 = 0x61;
+pub const SERVO_CONFIG: u8 = 0x70;
+pub const STRING_DATA: u8 = 0x71;
+pub const STEPPER_DATA: u8 = 0x72;
+pub const ONEWIRE_DATA: u8 = 0x73;
+pub const SHIFT_DATA: u8 = 0x75;
+pub const I2C_REQUEST: u8 = 0x76;
+pub const I2C_REPLY: u8 = 0x77;
+pub const I2C_CONFIG: u8 = 0x78;
+pub const REPORT_FIRMWARE: u8 = 0x79;
+pub const EXTENDED_ANALOG: u8 = 0x6F;
+pub const PIN_STATE_QUERY: u8 = 0x6D;
+pub const PIN_STATE_RESPONSE: u8 = 0x6E;
+pub const CAPABILITY_QUERY: u8 = 0x6B;
+pub const CAPABILITY_RESPONSE: u8 = 0x6C;
+pub const ANALOG_MAPPING_QUERY: u8 = 0x69;
+pub const ANALOG_MAPPING_RESPONSE: u8 = 0x6A;
+pub const SAMPLING_INTERVAL: u8 = 0x7A;
+pub const SCHEDULER_DATA: u8 = 0x7B;
+pub const SYSEX_NON_REALTIME: u8 = 0x7E;
+pub const SYSEX_REALTIME: u8 = 0x7F;
+
+pub const PIN_MODE_INPUT: u8 = 0;
+pub const PIN_MODE_OUTPUT: u8 = 1;
+pub const PIN_MODE_ANALOG: u8 = 2;
+pub const PIN_MODE_PWM: u8 = 3;
+pub const PIN_MODE_SERVO: u8 = 4;
+pub const PIN_MODE_SHIFT: u8 = 5;
+pub const PIN_MODE_I2C: u8 = 6;
+pub const PIN_MODE_ONEWIRE: u8 = 7;
+pub const PIN_MODE_STEPPER: u8 = 8;
+pub const PIN_MODE_ENCODER: u8 = 9;
+pub const PIN_MODE_SERIAL: u8 = 10;
+pub const PIN_MODE_PULLUP: u8 = 11;
+pub const PIN_MODE_IGNORE: u8 = 0x7F;
+pub const TOTAL_PIN_MODES: u8 = 13;
+
+pub const I2C_WRITE: u8 = 0x00;
+pub const I2C_READ: u8 = 0x01;
+pub const I2C_READ_CONTINUOUSLY: u8 = 0x10;
+pub const I2C_STOP_READING: u8 = 0x18;
+pub const I2C_READ_WRITE_MODE_MASK: u8 = 0x18;
+pub const I2C_10BIT_ADDRESS_MODE_MASK: u8 = 0x20;
+pub const I2C_END_TX_MASK: u8 = 0x40;
+
+pub const DEFAULT_ANALOG_RESOLUTION: u8 = 10;
+pub const DEFAULT_PWM_RESOLUTION: u8 = 10;
+pub const DEFAULT_SERVO_RESOLUTION: u8 = 14;
+pub const ANALOG_PIN_OFFSET: u8 = 14;

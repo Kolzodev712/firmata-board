@@ -1,68 +1,54 @@
-# Firmata client library in Rust
+# firmata-board
 
-Control your [Firmata](https://github.com/firmata/protocol) devices from Rust!
+Multi-board [Firmata](https://github.com/firmata/protocol) host adapter for Arduino and compatible boards, written in Rust.
 
-The library comes with a Board struct, which you can initialize with any object that implements
-`std:io::{Read, Write}` and `Debug` for formatting purposes. This avoids being locked in to a
-specific interface library. I highly recommend `serialport` for your USB connections (used in
-examples), but feel free to use `serial` or any other.
+Layered architecture with board profiles (Arduino Uno first), typed pin API, and `serialport` transport.
 
-The different methods of the `Firmata` trait that return results also have _backoff-able_
-counterparts in the `RetryFirmata` trait that utilizes a `ExponentialBackoff` strategy powered by
-the `backoff` crate. This may be useful as your Rust program may run "too fast" for your Firmata
-device to keep up.
+## Quick start
 
-The crate has been set up to utilize `tracing`, which helps in finding where your messages went!
-If you set the environment variable `CARGO_LOG=DEBUG` you can capture the most noise.
+1. Flash **StandardFirmata** onto your Arduino from the Arduino IDE.
+2. Add the dependency:
+
+```toml
+[dependencies]
+firmata-board = { git = "https://github.com/Darkeyes712/firmata-board" }
+```
+
+3. Connect and blink the built-in LED:
+
+```rust
+use firmata_board::{a, d, ArduinoUno};
+
+let mut uno = ArduinoUno::open("/dev/ttyACM0")?;
+uno.pin(d(13)).output()?.write_digital(true)?;
+uno.pin(a(0)).analog_input()?.enable_reporting()?;
+```
+
+Set `FIRMATA_PORT` to override the default `/dev/ttyACM0` in examples.
 
 ## Examples
 
-There are quite a couple of examples to try with your Firmata device! You can run each of them like
-this:
-
 ```bash
-cargo run --example blink
+cargo run --example blink --features serial
+cargo run --example analog --features serial
+cargo run --example available --features serial
 ```
 
-Where `blink` is the example's filename.
+## Architecture
 
-If you want the "full" output you can use:
+See **[docs/architecture.md](docs/architecture.md)** for the full design: protocol layer, transport, board profiles, and typed pin API.
 
-```bash
-RUST_LOG=DEBUG cargo run --example blink
-```
-
-## Installing Firmata on a device
-
-Chances are you have an Arduino or other Firmata device lying around since you're here :). You can
-go to your favorite Arduino IDE of choice and load the regular "StandardFirmata" onto your device
-and start tinkering!
-
-## Finding the right port
-
-You might need to set the USB port to the one that is in use on your machine. Find the right
-`port_name` in the list after running:
+## Development
 
 ```bash
-cargo run --example available
+just check
+cargo test --no-default-features
 ```
+
+## Attribution
+
+This project is derived from [firmata-rs](https://gitlab.com/Tiemen/firmata-rs) by Tiemen Schuijbroek, with substantial rework: layered modules, board profiles, typed pin API, and multi-board direction.
 
 ## License
 
-Licensed under either of
-
-- Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or http://www.apache.org/licenses/LICENSE-2.0)
-- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
-
-at your option.
-
-### Contribution
-
-Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the
-work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any
-additional terms or conditions.
-
-## Acknowledgements
-
-This library is largely based on the earlier work by Adrian Zankich over at
-https://github.com/zankich/rust-firmata to whom should go out many thanks!
+Licensed under either of Apache-2.0 or MIT at your option. See `LICENSE-MIT`, `LICENSE-APACHE`, and `NOTICE`.

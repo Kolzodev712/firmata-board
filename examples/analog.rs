@@ -1,31 +1,22 @@
-use firmata_rs::*;
-use serialport::*;
-use std::{thread, time::Duration};
+#[path = "support/common.rs"]
+mod common;
+
+use firmata_board::a;
 
 fn main() {
     tracing_subscriber::fmt::init();
 
-    let port = serialport::new("/dev/ttyACM0", 57_600)
-        .data_bits(DataBits::Eight)
-        .parity(Parity::None)
-        .stop_bits(StopBits::One)
-        .flow_control(FlowControl::None)
-        .timeout(Duration::from_millis(1000))
-        .open()
-        .expect("an opened serial port");
+    let mut uno = common::open_uno().expect("open Arduino Uno");
 
-    let mut b = firmata_rs::Board::new(Box::new(port)).expect("new board");
-
-    let pin = 14; // A0
-
-    b.set_pin_mode(pin, firmata_rs::PIN_MODE_ANALOG)
-        .expect("pin mode set");
-
-    b.report_analog(pin, 1).expect("reporting state");
+    uno.pin(a(0))
+        .analog_input()
+        .expect("set analog input")
+        .enable_reporting()
+        .expect("enable reporting");
 
     loop {
-        b.read_and_decode().expect("a message");
-        tracing::info!("analog value: {}", b.pins[pin as usize].value);
-        thread::sleep(Duration::from_millis(10));
+        uno.board_mut().read_message().expect("read message");
+        tracing::info!("analog value: {}", uno.pin(a(0)).value());
+        std::thread::sleep(std::time::Duration::from_millis(10));
     }
 }
