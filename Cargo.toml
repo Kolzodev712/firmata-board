@@ -4,8 +4,8 @@ version = "0.1.0"
 license = "MIT OR Apache-2.0"
 authors = ["Nikola Kolev <nikolakolev712@gmail.com>"]
 readme = "README.md"
-repository = "https://github.com/Darkeyes712/firmata-board"
-homepage = "https://github.com/Darkeyes712/firmata-board"
+repository = "https://github.com/Kolzodev712/firmata-board"
+homepage = "https://github.com/Kolzodev712/firmata-board"
 description = "A multi-board Firmata host adapter for Arduino and compatible boards."
 edition = "2021"
 

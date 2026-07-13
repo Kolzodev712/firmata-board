@@ -2,6 +2,8 @@
 
 Rust host adapter for Firmata-compatible boards running **StandardFirmata**, built on the [Firmata protocol](https://github.com/firmata/protocol) and `serialport`.
 
+See **[docs/exploring-firmata-board.md](exploring-firmata-board.md)** for a hands-on walkthrough and examples that complement this architecture overview.
+
 The crate separates three concerns:
 
 1. **Protocol** — pure encode/decode of Firmata 2.5 bytes

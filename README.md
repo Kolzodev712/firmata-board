@@ -11,7 +11,7 @@ Layered architecture with board profiles (Arduino Uno first), typed pin API, and
 
 ```toml
 [dependencies]
-firmata-board = { git = "https://github.com/Darkeyes712/firmata-board" }
+firmata-board = { git = "https://github.com/Kolzodev712/firmata-board" }
 ```
 
 3. Connect and blink the built-in LED:
@@ -36,7 +36,7 @@ cargo run --example available --features serial
 
 ## Architecture
 
-See **[docs/architecture.md](docs/architecture.md)** for the full design: protocol layer, transport, board profiles, and typed pin API.
+See **[docs/architecture.md](docs/architecture.md)** for the full design: protocol layer, transport, board profiles, and typed pin API. Also see **[docs/exploring-firmata-board.md](docs/exploring-firmata-board.md)** for a guided exploration and examples that demonstrate the crate in practice.
 
 ## Development
 
